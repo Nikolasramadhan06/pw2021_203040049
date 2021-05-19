@@ -2,12 +2,11 @@
     // function untuk melakukan koneksi ke database dan memilih database
     function koneksi(){
         $conn = mysqli_connect("localhost", "root", "");
-        mysqli_select_db($conn, "pw_tubes_203040049");
+        mysqli_select_db($conn, "pw2021_203040049");
         return $conn;
     }
-
-    // function untuk melakukan query dan memasukannya kedalam array
-    function query($sql){
+     // function untuk melakukan query dan memasukannya kedalam array
+     function query($sql){
         $conn = koneksi();
         $result = mysqli_query($conn, "$sql");
         $rows = [];
@@ -18,75 +17,52 @@
         return $rows;
     }
 
-    // function untuk mengubah format tampilan int harga kedalam format rupiah
     function ubahRupiah($angka){
         return "Rp" . number_format($angka,2,',','.');
     }
 
-    // function untuk menambahkan data pada tambah.php kedalam database
-    function tambah($data)
-    {
-        $conn = koneksi();
-        $Jenis = htmlspecialchars($data['Jenis']);
-        $deskripsi = htmlspecialchars($data['deskripsi']);
-        $harga = htmlspecialchars($data['harga']);
-        $Stok = htmlspecialchars($data['Stok']);
-        $Foto = htmlspecialchars($data['Foto']);
-
-        $query = "INSERT INTO sorum_mobil
-                        VALUE
-                        ('', '$Jenis', '$deskripsi', '$harga', '$Stok', '$Foto')";
-        mysqli_query($conn, $query);
-
-        return mysqli_affected_rows($conn);
+    function cari($keyword) {
+        $query = "SELECT * FROM category_buku
+                WHERE
+                nama_buku LIKE '%$keyword%' OR
+                deskripsi LIKE '%$keyword%' OR
+                harga LIKE '%$keyword%' OR
+                stok LIKE '%$keyword%'
+        ";
+        return query($query);
     }
 
-    // function untuk menghapus data sesuai dengan id yang dikirimkan dari hapus.php
     function hapus($id){
         $conn = koneksi();
         
-        $query = "DELETE FROM `sorum_mobil` WHERE id = '$id'";
+        $query = "DELETE FROM `category_buku` WHERE id = '$id'";
         
         mysqli_query($conn, $query);
         return mysqli_affected_rows($conn);
     }
 
-    // function untuk mengupdate data sesuai dengan data yang dikirimkan dari ubah.php
     function ubah($data)
     {
       $conn = koneksi();
     
       $id = $data['id'];
-      $Jenis = htmlspecialchars($data['Jenis']);
+      $nama_buku = htmlspecialchars($data['nama_buku']);
       $deskripsi = htmlspecialchars($data['deskripsi']);
       $harga = htmlspecialchars($data['harga']);
-      $Stok= htmlspecialchars($data['Stok']);
-      $Foto = htmlspecialchars($data['Foto']);
+      $stok= htmlspecialchars($data['stok']);
+      $foto = htmlspecialchars($data['foto']);
     
     
       $query = "UPDATE category_buku SET
-                  Jenis = '$Jenis',
+                  nama_buku = '$nama_buku',
                   deskripsi = '$deskripsi',
                   harga = '$harga',
-                  Stok = '$Stok',
-                  Foto = '$Foto'
+                  stok = '$stok',
+                  foto = '$foto'
                 WHERE id = $id";
       mysqli_query($conn, $query) or die(mysqli_error($conn));
       return mysqli_affected_rows($conn);
     }
-
-    function cari($data)
-    {
-        $items = query("SELECT * FROM sorum_mobil");
-
-        if(isset($_GET['cari'])){
-            $keyword = $_GET['keyword'];
-            $items = query("SELECT * FROM `sorum_mobil` WHERE `Jenis` LIKE '%$keyword%' OR ` deskripsi` LIKE '%$keyword%' OR `harga` LIKE '%$keyword%' OR Stok LIKE '%$keyword%'");
-        }else{
-            $items = query("SELECT * FROM FROM sorum_mobil");
-        }
-    }
-
     function registrasi($data)
     {
         $conn = koneksi();
@@ -112,4 +88,6 @@
         return mysqli_affected_rows($conn);
     }
     
+
+
 ?>

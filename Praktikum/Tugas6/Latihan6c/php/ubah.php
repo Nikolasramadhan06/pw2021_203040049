@@ -1,23 +1,27 @@
-<?php
-    require 'functions.php';
+<?php 
+session_start();
 
-    $id = $_GET['id'];
-    $item = query("SELECT * FROM sorum_mobil WHERE id = $id")[0];
+require 'functions.php';
 
-    if (isset($_POST['ubah'])) {
-        if (ubah($_POST) > 0) {
-            echo "<script>
-                     alert(Data Berhaasil diubah!');
+$id = $_GET['id'];
+$item = query("SELECT * FROM sorum_mobil WHERE id = $id")[0];
+
+if (isset($_POST['ubah'])) {
+    if (ubah($_POST) > 0) {
+        echo "<script>
+                    alert('Data Berhasil diubah!');
+                    document.location.href = 'admin.php';
+              </script>";
+    } else {
+        echo    "<script>
+                    alert('Data Gagal diubah!');
                     document.location.href = 'admin.php';
                 </script>";
-        } else {
-            echo "<script>
-                     alert('Data Gagal diubah!');
-                     document.location.href = 'admin.php';
-                </script>";
-        }
     }
+}
+
 ?>
+
 
 <html lang="en">
 <head>

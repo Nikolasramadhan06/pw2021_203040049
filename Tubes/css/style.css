@@ -1,0 +1,295 @@
+.header {
+    height: 120px;
+}
+
+.header h1 {
+    font-family: 'Action';
+    display: inline-block;
+    font-size: 60px;
+    padding: 6px 29px;
+}
+
+.container h1 {
+    color: black;
+}
+
+.container {
+    width: 87%;
+    margin: 0 auto;
+}
+
+.container::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.banner {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+section {
+    padding: 80px 0;
+}
+
+.navbar {
+    color: white;
+}
+
+.container img {
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 3px 7px white;
+}
+
+.banner h1 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: -5px;
+}
+
+.banner p {
+    margin-bottom: -20px;
+    color: white;
+    font-size: 20px;
+}
+
+.kuliah {
+    background-color: #E6E6FA;
+    padding-top: 140px;
+    padding-bottom: 120px;
+}
+
+.heading h1 {
+    color: white;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.heading {
+    text-align: center;
+}
+
+.card {
+    width: 20%;
+    background: #E6E6FA;
+    text-align: center;
+    border: 3px solid rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.card-header {
+    text-align: center;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.card-body {
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.card-body .btn {
+    display: block;
+    text-align: center;
+}
+
+.footer {
+    height: 45px;
+    padding-top: 10px;
+    padding-left: 10px;
+    display: flex;
+}
+
+.content h2 {
+    text-align: center;
+}
+
+.contact .content {
+    max-width: 800px;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.info .contactinfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info .contactinfo .box {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.inputBox {
+    padding-top: 10px;
+}
+
+.contactform {
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.contactform {
+    width: 40%;
+    padding: 40px;
+    background: #fff;
+}
+
+.contactform h2 {
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+}
+
+.contactform .inputBox {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contactform .inputBox input,
+.contactform .inputBox textarea {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: nb;
+}
+
+.contactform .inputBox span {
+    position: absolute;
+    left: 0px;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    bottom: 10px;
+}
+
+.contactform .inputBox input:focus~span,
+.contactform .inputBox input:valid~span,
+.contactform .inputBox textarea:focus~span,
+.contactform .inputBox textarea:valid~span {
+    color: #e91363;
+    font-size: 15px;
+    transform: translateY(-25px);
+}
+
+.contactform .inputBox input[type="submit"] {
+    right: 10px;
+    width: 130px;
+    background: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.info .contactinfo .box .icon {
+    min-width: 60px;
+    height: 60px;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.info .contactinfo .box .text {
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.contact {
+    position: relative;
+    min-height: 200px;
+    padding: 10px 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info .contactinfo .box .text h3 {
+    font-weight: 500;
+    color: #00bcd4;
+}
+
+.tulisan_login {
+    text-align: center;
+    /*membuat semua huruf menjadi kapital*/
+    text-transform: uppercase;
+    font-size: 200%;
+}
+
+.ubah {
+    background-image: url(../img/Buku.jpeg);
+}
+
+.kotak_ubah {
+    width: 450px;
+    background: white;
+    /*meletakkan form ke tengah*/
+    margin: 89px auto;
+    padding: 30px 20px;
+    box-shadow: 0px 0px 100px 4px #d6d6d6;
+}
+
+label {
+    font-size: 11pt;
+}
+
+.form_ubah {
+    /*membuat lebar form penuh*/
+    box-sizing: border-box;
+    width: 100%;
+    height: 5%;
+    padding: 10px;
+    font-size: 11pt;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width:1000px) {
+    .card {
+        width: 40%;
+    }
+    .contact {
+        padding: 50px;
+    }
+    .info {
+        flex-direction: column;
+    }
+    .info .contactinfo {
+        margin-bottom: 40px;
+    }
+    .info .contactinfo,
+    .contactform {
+        width: 100%;
+    }
+}

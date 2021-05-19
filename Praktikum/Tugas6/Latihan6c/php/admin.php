@@ -5,7 +5,9 @@
     // Melakukan Query tampil data
     $items = query("SELECT * FROM sorum_mobil");
 
-
+    if (isset($_GET["cari"]) ) {
+        $sorum_mobil = cari($_GET["keyword"]);
+      }
 ?>
 <html lang="en">
 <head>
