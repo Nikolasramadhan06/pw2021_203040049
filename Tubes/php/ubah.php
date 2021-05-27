@@ -3,24 +3,31 @@ session_start();
 
 require 'functions.php';
 
-$id = $_GET['id'];
-$buku = query("SELECT * FROM category_buku WHERE id = $id")[0];
-
-if (isset($_POST['ubah'])) {
-    if (ubah($_POST) > 0) {
-        echo "<script>
-                    alert('Data Berhasil diubah!');
-                    document.location.href = 'admin.php';
-              </script>";
-    } else {
-        echo    "<script>
-                    alert('Data Gagal diubah!');
-                    document.location.href = 'admin.php';
-                </script>";
-    }
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: index.php");
+  exit;
 }
 
-?>
+// ambil id dari url
+$id = $_GET['id'];
+
+// query mahasiswa berdasarkan id
+$buku = query("SELECT * FROM category_buku WHERE id = $id");
+
+// cek apakah tombol ubah sudah ditekan
+if (isset($_POST['ubah'])) {
+  if (ubah($_POST) > 0) {
+    echo "<script>
+            alert('data berhasil diubah');
+            document.location.href = 'admin.php';
+         </script>";
+  } else {
+    echo "data gagal diubah!";
+  }
+}
+  
+  ?>
 
 
 <html lang="en">
@@ -38,12 +45,18 @@ if (isset($_POST['ubah'])) {
     <div class="kotak_ubah">
         <p class="tulisan_login">Silahkan Ubah Data</p>
         <br>
-         <form action="" method="post">
+         <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id"  value="<?= $buku['id']; ?>">
 
-                <label for="foto">Foto </label><br>
-                <input type="text" name="foto" class="form_ubah" id="foto" required value="<?= $buku['foto']; ?>"> <br><br>
-
+               
+                <input type="hidden" name="foto_lama" value="<?= $buku['foto']; ?>">
+                <li>
+        <label>
+          Gambar :
+          <input type="file" name="foto" class="foto" onchange="previewImage()">
+        </label>
+        <img src="../assets/img/<?= $buku['foto']; ?>" width="120" style="display: block;" class="img-preview">
+      </li>
                 <label for="nama_buku">Judul</label><br>
                 <input type="text" name="nama_buku" class="form_ubah" id="nama_buku" required value="<?= $buku["nama_buku"]; ?>"> <br><br>
             
@@ -58,7 +71,7 @@ if (isset($_POST['ubah'])) {
             
             
             <button class="btn btn-primary" type="submit" name="ubah">Ubah Data!</button>
-            <button class="btn btn-success" type="submit">
+            <button class="btn btn-success">
                 <a href="admin.php" style="text-decoration: none; color: white;">Kembali</a>
             </button>
         
@@ -66,6 +79,6 @@ if (isset($_POST['ubah'])) {
     </div>
     <br>
     </div>
-
+    <script src="../js/script.js"></script>
 </body>
 </html>

@@ -7,12 +7,12 @@
     }
 
     require 'functions.php';
+// ambil id dari URL
+$id = $_GET['id'];
 
-    // Mengambil id dari url
-    $id = $_GET["id"];
+// query mahasiswa berdasarkan id
+$buku = query("SELECT * FROM category_buku WHERE id = $id");
 
-    // Melakukan query dengan parameter id yang diambil dari url
-    $buku = query ("SELECT * FROM category_buku WHERE id = $id")[0];
 ?> 
 <head>
     <meta charset="UTF-8">

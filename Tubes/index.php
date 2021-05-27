@@ -6,7 +6,7 @@ require 'php/functions.php';
 $book = query("SELECT * FROM category_buku");
 
 if (isset($_GET['cari'])) {
-  $book = cari($_GET['keyword']);
+  $category_buku = cari($_GET['keyword']);
 }
 
 
@@ -47,9 +47,9 @@ if (isset($_GET['cari'])) {
           MENU
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="kuliah">KULIAH</a>
-          <a class="dropdown-item" href="Praktikum">PRAKTIKUM</a>
-          <a class="dropdown-item" href="Tubes">TUGAS BESAR</a>
+          <a class="dropdown-item" href="../kuliah">KULIAH</a>
+          <a class="dropdown-item" href="../Praktikum">PRAKTIKUM</a>
+          <a class="dropdown-item" href="../Tubes">TUGAS BESAR</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="../index.php">KEMBALI</a>
         </div>
@@ -63,11 +63,11 @@ if (isset($_GET['cari'])) {
             <form action="" method="GET">
                 <div class="field is-grouped">
                 <div class="control">
-                        <button type="submit" class="button is-info mr-1" name="cari">Cari</button>
+                <button type="submit" name="cari" class="tombol-cari">Cari!</button>
                     </div>
                     <div class="field mr-2">
                         <div class="control">
-                            <input class="input" type="text" name="keyword" id="keyword" placeholder="Cari Data" autofocus>
+                        <input type="text" name="keyword" size="40" placeholder="masukkan keyword pencarian.." autocomplete="off" autofocus class="keyword">
                         </div>
                     </div>
                 </div>
@@ -89,16 +89,17 @@ if (isset($_GET['cari'])) {
             </thead>
           
             <tbody>
-              <?php if (empty($book)) : ?>
+            <?php if (empty($book)) : ?>
                 <tr>
-                    <td colspan="7">
-                        <h1>Data tidak ditemukan</h1>
+                    <td colspan="4">
+                        <p style="color: red; font-style: italic;">data mahasiswa tidak ditemukan!</p>
                     </td>
                 </tr>
-            <?php else : ?>
-                <?php $i = 1;?>
-                <?php foreach($book as $buku) : ?>
-                    <tr>
+            <?php endif; ?>
+
+            <?php $i = 1;
+            foreach ($book as $buku) : ?>
+                 <tr>
                     <td><?= $buku["id"]; ?></td>
                     <td>
                         <figure class="image is-130x130">
@@ -109,10 +110,11 @@ if (isset($_GET['cari'])) {
                     <td><?= $buku['deskripsi']; ?></td>
                     <td><?= ubahRupiah($buku["harga"]) ?></td>
                     <td><?= $buku['stok']; ?></td>
-                            <td><a href="detail.php?id=<?= $buku["id"]; ?>">Pilih</td>
-                <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
+                    <td>
+                        <a href="php/detail.php?id=<?= $buku['id']; ?>">lihat detail</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </table>
         <br>
         <div class="nama">
@@ -120,7 +122,7 @@ if (isset($_GET['cari'])) {
        <br>
         </div>
     </div>
-\
+    <script src="js/script.js"></script>
 
     <div class="text-center p-3 bg-secondary">
     © 2021 Copyright Nikolas Ramadhan

@@ -1,6 +1,6 @@
 .container {
     background: whitesmoke;
-    width: 10%;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -42,11 +42,15 @@ label {
     margin-bottom: 20px;
 }
 
+.regis {
+    margin: 5px auto;
+    padding: 30px 20px;
+}
+
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(49, 49, 49);
 }
 
 .box img {
